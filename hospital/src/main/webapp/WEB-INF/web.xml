@@ -1,0 +1,32 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  	
+  <filter>
+  	<filter-name>EncodingFilter</filter-name>
+  	<display-name>EncodingFilter</display-name>
+  	<filter-class>com.imooc.hospital.global.EncodingFilter</filter-class>
+  	<init-param>
+  	<param-name>ENCODING</param-name>
+  	<param-value>utf-8</param-value>
+  	</init-param>
+  </filter>
+  <filter-mapping>
+  	<filter-name>EncodingFilter</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+ <servlet>
+    <servlet-name>Global</servlet-name>
+    <servlet-class>com.imooc.hospital.global.DispatcherServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Global</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+  	<welcome-file>hospital_detail.html</welcome-file>
+  	</welcome-file-list>
+</web-app>
