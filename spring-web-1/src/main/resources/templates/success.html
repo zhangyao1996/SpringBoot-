@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!-- 导入命名空间 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div>
+<h3 th:text="${name}"></h3>
+<br>
+<span th:each="user:${users}">[[${user}]]</span>
+</div>
+</body>
+</html>

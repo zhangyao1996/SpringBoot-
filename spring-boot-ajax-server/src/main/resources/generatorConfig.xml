@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="context1">
+		<commentGenerator>
+			<!-- 2.1是否去除自动生成的注释 true：是 ： false:否 -->
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!-- 2.2数据库链接URL、用户名、密码 -->
+		<jdbcConnection connectionURL="jdbc:mysql://localhost:3306/mytest"
+			driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+
+		<!-- 3.生成模型的包名和位置 -->
+		<javaModelGenerator targetPackage="com.zhangyao.entity"
+			targetProject="spring-boot-ajax-server/src/main/java" />
+
+		<!-- 4.生成的映射文件包名和位置 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="spring-boot-ajax-server/src/main/resources" />
+
+		<!-- 5.生成DAO的包名和位置 -->
+		<javaClientGenerator targetPackage="com.zhangyao.mapper"
+			targetProject="spring-boot-ajax-server/src/main/java" type="XMLMAPPER" />
+
+		<!-- 6.指定要生成的表(更改tableName 和domainObjectName就可) -->
+		<!-- 数据库名mytest，表名users -->
+		<table schema="mytest" tableName="users" domainObjectName="User"
+			modelType="flat" enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false">
+			<!-- <columnOverride column="???" property="???" /> -->
+		</table>
+	</context>
+</generatorConfiguration>

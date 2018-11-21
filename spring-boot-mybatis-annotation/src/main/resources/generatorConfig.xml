@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+     <commentGenerator>
+            <!-- 2.1是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+    </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/springbootdb" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+    <javaModelGenerator targetPackage="com.zhangyao.entity" targetProject="spring-boot-mybatis-annotation/src/main/java" />
+    <!-- <sqlMapGenerator targetPackage="mapper" targetProject="spring-boot-mybatis-annotation/src/main/resources" /> -->
+    <javaClientGenerator targetPackage="com.zhangyao.mapper" targetProject="spring-boot-mybatis-annotation/src/main/java" type="XMLMAPPER" />
+    <table schema="springbootdb" tableName="city" domainObjectName="City" modelType="flat" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+     
+    </table>
+  </context>
+</generatorConfiguration>

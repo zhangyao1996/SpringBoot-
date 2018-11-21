@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oa.mapper.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="com.oa.entity.Employee">
+    <id column="sn" jdbcType="CHAR" property="sn" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="department_sn" jdbcType="CHAR" property="departmentSn" />
+    <result column="post" jdbcType="VARCHAR" property="post" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    sn, password, name, department_sn, post
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from employee
+    where sn = #{sn,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from employee
+    where sn = #{sn,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="com.oa.entity.Employee">
+    insert into employee (sn, password, name, 
+      department_sn, post)
+    values (#{sn,jdbcType=CHAR}, #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{departmentSn,jdbcType=CHAR}, #{post,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.oa.entity.Employee">
+    insert into employee
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sn != null">
+        sn,
+      </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="departmentSn != null">
+        department_sn,
+      </if>
+      <if test="post != null">
+        post,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sn != null">
+        #{sn,jdbcType=CHAR},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentSn != null">
+        #{departmentSn,jdbcType=CHAR},
+      </if>
+      <if test="post != null">
+        #{post,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oa.entity.Employee">
+    update employee
+    <set>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="departmentSn != null">
+        department_sn = #{departmentSn,jdbcType=CHAR},
+      </if>
+      <if test="post != null">
+        post = #{post,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sn = #{sn,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oa.entity.Employee">
+    update employee
+    set password = #{password,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      department_sn = #{departmentSn,jdbcType=CHAR},
+      post = #{post,jdbcType=VARCHAR}
+    where sn = #{sn,jdbcType=CHAR}
+  </update>
+	<resultMap id="BaseResultMap" type="com.oa.entity.Employee">
+		<id column="sn" jdbcType="CHAR" property="sn" />
+		<result column="password" jdbcType="VARCHAR" property="password" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="department_sn" jdbcType="VARCHAR" property="departmentSn" />
+		<result column="post" jdbcType="VARCHAR" property="post" />
+		<association column="department_sn" javaType="Department" property="department">
+			<id column="dsn" javaType="String" property="sn" />
+			<result column="dname" javaType="String" property="name" />
+		</association>
+	</resultMap>
+	<sql id="Base_Column_List">
+		sn, password, name, department_sn, post
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+		select e.*,d.sn dsn,d.name dname
+		from employee e left join department d on d.sn=e.department_sn
+		where e.sn = #{sn}
+	</select> 
+	<!-- 关联查询 -->
+	<select id="getAll" resultMap="BaseResultMap">
+		select e.*,d.sn dsn,d.name dname
+		from employee e left join department d on d.sn=e.department_sn
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from employee
+		where sn = #{sn,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="com.oa.entity.Employee">
+		insert into employee (sn, password, name,
+		department_sn, post)
+		values (#{sn,jdbcType=CHAR}, #{password,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{departmentSn,jdbcType=CHAR}, #{post,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.oa.entity.Employee">
+		insert into employee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="sn != null">
+				sn,
+			</if>
+			<!-- &lt;if test="password != null"&gt;
+				password,
+			&lt;/if&gt; -->
+			<if test="name != null">
+				name,
+			</if>
+			<if test="departmentSn != null">
+				department_sn,
+			</if>
+			<if test="post != null">
+				post,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="sn != null">
+				#{sn,jdbcType=CHAR},
+			</if>
+			<!-- &lt;if test="password != null"&gt;
+				#{password,jdbcType=VARCHAR},
+			&lt;/if&gt; -->
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentSn != null">
+				#{departmentSn,jdbcType=CHAR},
+			</if>
+			<if test="post != null">
+				#{post,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.oa.entity.Employee">
+		update employee
+		<set>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="departmentSn != null">
+				department_sn = #{departmentSn,jdbcType=CHAR},
+			</if>
+			<if test="post != null">
+				post = #{post,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where sn = #{sn,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.oa.entity.Employee">
+		update employee
+		set password = #{password,jdbcType=VARCHAR},
+		name = #{name,jdbcType=VARCHAR},
+		department_sn = #{departmentSn,jdbcType=CHAR},
+		post = #{post,jdbcType=VARCHAR}
+		where sn = #{sn,jdbcType=CHAR}
+	</update>
+</mapper>

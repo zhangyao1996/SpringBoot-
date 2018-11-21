@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+     <commentGenerator>
+            <!-- 2.1是否去除自动生成的注释 true：是 ： false:否 -->
+            <property name="suppressAllComments" value="true" />
+    </commentGenerator>
+    <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/oa" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+    <javaModelGenerator targetPackage="com.oa.entity" targetProject="oa/src/main/java" />
+    <sqlMapGenerator targetPackage="mapper" targetProject="oa/src/main/resources" />
+    <javaClientGenerator targetPackage="com.oa.mapper" targetProject="oa/src/main/java" type="XMLMAPPER" />
+    <table schema="oa" tableName="department" domainObjectName="Department" modelType="flat" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+    </table>
+     <table schema="oa" tableName="employee" domainObjectName="Employee" modelType="flat" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+    </table>
+      <table schema="oa" tableName="claim_voucher" domainObjectName="ClaimVoucher" modelType="flat" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+    </table>
+      <table schema="oa" tableName="claim_voucher_item" domainObjectName="ClaimVoucherItem" modelType="flat" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+    </table>
+     <table schema="oa" tableName="deal_record" domainObjectName="DealRecord" modelType="flat" enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false">
+    </table>
+  </context>
+</generatorConfiguration>

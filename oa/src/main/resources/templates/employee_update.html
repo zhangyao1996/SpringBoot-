@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<!-- headbar -->
+<div th:replace="commons/top::headbar"></div>
+<!-- bdybar -->
+<div th:replace="commons/top::bodybar"></div>
+<section id="content" class="table-layout animated fadeIn">
+    <div class="tray tray-center">
+        <div class="content-header">
+            <h2> 编辑员工信息 </h2>
+            <p class="lead"></p>
+        </div>
+        <div class="admin-form theme-primary mw1000 center-block" style="padding-bottom: 175px;">
+            <div class="panel heading-border">
+                <form id="admin-form" name="addForm" th:action="@{/employee/update}" method="post">
+                    <div class="panel-body bg-light">
+                        <div class="section-divider mt20 mb40">
+                            <span> 基本信息 </span>
+                        </div>
+                        <div class="section row">
+                            <div class="col-md-6">
+                                <label for="sn" class="field prepend-icon">
+                                    <input id="sn" name="sn" class="gui-input" placeholder="工号..." readonly="readonly" type="text" th:value="${emp.sn}"/>
+                                    <label for="sn" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                </label>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="name" class="field prepend-icon">
+                                    <input id="name" name="name" class="gui-input" placeholder="姓名..." type="text" th:value="${emp.name}"/>
+                                    <label for="name" class="field-icon">
+                                        <i class="fa fa-user"></i>
+                                    </label>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="section row">
+                            <div class="col-md-6">
+								<label for="departmentSn" class="control-label">部门:</label> <select
+									class="form-control" name="departmentSn">
+									
+									<option  th:selected="${emp.department.name eq dept.name}" th:each="dept:${dlist}" th:value="${dept.sn}"
+										th:text="${dept.name }"></option>
+								</select>
+							</div>
+                            <div class="col-md-6">
+								<label for="post" class="control-label">职务：</label> <select
+									class="form-control" name="post">
+								
+									<option  th:selected="${emp.post eq post}" th:each="post:${plist}" th:value="${post}"
+										th:text="${post}"></option>
+								</select>
+							</div>
+                        <div class="panel-footer text-right">
+                            <button type="submit" class="button"> 保存 </button>
+                            <button type="button" class="button" onclick="javascript:window.history.go(-1);"> 返回 </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</section>
+</div>
+<div th:replace="commons/bottom::bottombar"></div>
+
+</body>
+</html>
